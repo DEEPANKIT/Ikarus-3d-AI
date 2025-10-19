@@ -1,4 +1,11 @@
-# Python
+# =============================================================================
+# IKARUS 3D ML ASSIGNMENT - GITIGNORE
+# Only essential deliverables are included in the repository
+# =============================================================================
+
+# =============================================================================
+# PYTHON
+# =============================================================================
 __pycache__/
 *.py[cod]
 *$py.class
@@ -21,60 +28,149 @@ wheels/
 *.egg
 MANIFEST
 
-# Virtual environments
+# =============================================================================
+# VIRTUAL ENVIRONMENTS
+# =============================================================================
 venv/
 venv-*/
 env/
 ENV/
+.venv/
 
-# IDE
+# =============================================================================
+# IDE & EDITORS
+# =============================================================================
 .vscode/
 .idea/
 *.swp
 *.swo
+*.sublime-*
 
-# OS
+# =============================================================================
+# OPERATING SYSTEM
+# =============================================================================
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
 
-# Node.js
+# =============================================================================
+# NODE.JS (Frontend)
+# =============================================================================
 node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+.npm
+.yarn-integrity
 
-# Environment variables
+# =============================================================================
+# ENVIRONMENT VARIABLES
+# =============================================================================
 .env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
 
-# Logs
+# =============================================================================
+# LOGS & TEMPORARY FILES
+# =============================================================================
 *.log
 logs/
-
-# Temporary files
 *.tmp
 *.temp
+*.cache
 
-# Model files (too large for GitHub)
+# =============================================================================
+# ML MODELS & LARGE FILES
+# =============================================================================
 models/
 *.pkl
 *.joblib
+*.h5
+*.pth
+*.pt
+*.bin
 
-# Data files (keep essential files, exclude large processed files)
-# data/raw/*.csv  # Commented out to include the dataset
-data/processed/*.json
+# =============================================================================
+# DATA FILES (Keep essential dataset, exclude processed files)
+# =============================================================================
+# Keep the main dataset for the assignment
+# data/raw/intern_data_ikarus.csv is included
+data/processed/
+*.json
+*.csv.bak
 
-# Jupyter Notebook checkpoints
+# =============================================================================
+# JUPYTER NOTEBOOKS
+# =============================================================================
 .ipynb_checkpoints/
 
-# Coverage reports
+# =============================================================================
+# TESTING & COVERAGE
+# =============================================================================
+.pytest_cache/
 htmlcov/
 .coverage
 .coverage.*
 coverage.xml
+.tox/
+.nox/
 
-# pytest
-.pytest_cache/
+# =============================================================================
+# EXCLUDE ALL TESTING SCRIPTS (Only deliverables should be in repo)
+# =============================================================================
+test_*.py
+*_test.py
+debug_*.py
+simple_*.py
+comprehensive_*.py
+complete_*.py
+populate_*.py
+setup_*.py
+*_config.py
+*_status.py
+*_connection.py
+*_direct.py
+*_rest.py
+*_step_by_step.py
+*_real.py
+
+# =============================================================================
+# EXCLUDE CURSOR/IDE SPECIFIC FILES
+# =============================================================================
+.cursor/
+.cursorrules
+*.plan.md
+
+# =============================================================================
+# EXCLUDE ASSIGNMENT FILES (Keep only deliverables)
+# =============================================================================
+Ikarus3d assignment.pdf
+Ikarus3d assignment_page-*.jpg
+implementation_plan.txt
+start-project.bat
+
+# =============================================================================
+# EXCLUDE PACKAGE FILES (Not needed for deliverables)
+# =============================================================================
+package-lock.json
+package.json
+requirements-*.txt
+requirements_full.txt
+requirements_minimal.txt
+
+# =============================================================================
+# STREAMLIT (If using for demo)
+# =============================================================================
+.streamlit/
+
+# =============================================================================
+# DEPLOYMENT
+# =============================================================================
+.vercel/
+.railway/

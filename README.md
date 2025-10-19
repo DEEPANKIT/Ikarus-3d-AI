@@ -24,6 +24,7 @@ A complete **ML-driven web application** that combines **Machine Learning**, **N
 ## 🏗️ Architecture & ML Models
 
 ### 🤖 Natural Language Processing (NLP)
+
 - **Model**: `sentence-transformers/all-MiniLM-L6-v2`
 - **Purpose**: Text embedding generation for semantic similarity
 - **Dimensions**: 384-dimensional embeddings
@@ -31,6 +32,7 @@ A complete **ML-driven web application** that combines **Machine Learning**, **N
 - **Performance**: High-quality semantic understanding for furniture products
 
 ### 🖼️ Computer Vision (CV)
+
 - **Model**: ResNet50 with ImageNet weights
 - **Purpose**: Image feature extraction and visual similarity
 - **Dimensions**: 2048-dimensional features
@@ -38,6 +40,7 @@ A complete **ML-driven web application** that combines **Machine Learning**, **N
 - **Performance**: Robust feature extraction from product images
 
 ### 🎨 Generative AI (GenAI)
+
 - **Model**: Azure OpenAI GPT-4
 - **Purpose**: Creative product description generation
 - **Integration**: LangChain for prompt management
@@ -45,12 +48,14 @@ A complete **ML-driven web application** that combines **Machine Learning**, **N
 - **Performance**: High-quality, engaging content generation
 
 ### 🗄️ Vector Database
+
 - **System**: Pinecone
 - **Purpose**: Efficient similarity search and retrieval
 - **Features**: Real-time vector search, metadata filtering
 - **Performance**: Sub-second search across 312 products
 
 ### 🔗 Recommendation Engine
+
 - **Algorithm**: Content-based filtering with cosine similarity
 - **Features**: Multimodal embeddings (text + image)
 - **Weighting**: 70% text features, 30% image features
@@ -59,6 +64,7 @@ A complete **ML-driven web application** that combines **Machine Learning**, **N
 ## 🛠️ Tech Stack
 
 ### Backend
+
 - **Framework**: FastAPI with async support
 - **ML Libraries**: PyTorch, scikit-learn, sentence-transformers
 - **NLP**: HuggingFace Transformers, sentence-transformers
@@ -67,6 +73,7 @@ A complete **ML-driven web application** that combines **Machine Learning**, **N
 - **Database**: Pinecone (vectors), Pandas (CSV processing)
 
 ### Frontend
+
 - **Framework**: React 18 with TypeScript
 - **UI Library**: Material-UI (MUI)
 - **State Management**: React Query
@@ -74,6 +81,7 @@ A complete **ML-driven web application** that combines **Machine Learning**, **N
 - **Styling**: CSS-in-JS with MUI theme
 
 ### Infrastructure
+
 - **Vector Database**: Pinecone
 - **Deployment**: Vercel (Frontend) + Railway (Backend)
 - **Version Control**: Git + GitHub
@@ -107,19 +115,23 @@ Ikarus-3d-AI/
 ## 🚀 Quick Start
 
 ### Prerequisites
+
 - **Python**: 3.8+ (recommended: 3.9+)
 - **Node.js**: 16+ (recommended: 18+)
 - **Memory**: 8GB+ RAM (for ML models)
 - **Storage**: 2GB+ free space
 
 ### 1. Clone Repository
+
 ```bash
 git clone https://github.com/DEEPANKIT/Ikarus-3d-AI.git
 cd Ikarus-3d-AI
 ```
 
 ### 2. Environment Setup
+
 Create a `.env` file in the project root:
+
 ```bash
 # Azure OpenAI Configuration
 OPENAI_API_KEY=your_azure_openai_api_key
@@ -134,6 +146,7 @@ PINECONE_INDEX_NAME=ikarus-furniture
 ```
 
 ### 3. Backend Setup
+
 ```bash
 cd backend
 python -m venv venv
@@ -143,11 +156,13 @@ uvicorn main:app --reload --host 0.0.0.0 --port 8000
 ```
 
 **Backend URLs:**
+
 - API: http://localhost:8000
 - Documentation: http://localhost:8000/docs
 - ReDoc: http://localhost:8000/redoc
 
 ### 4. Frontend Setup
+
 ```bash
 cd frontend
 npm install
@@ -161,6 +176,7 @@ npm start
 The project uses a comprehensive furniture dataset with **312 products**:
 
 ### Core Features
+
 - **title**: Product name and description
 - **brand**: Manufacturer brand
 - **description**: Detailed product information
@@ -168,6 +184,7 @@ The project uses a comprehensive furniture dataset with **312 products**:
 - **categories**: Product categories (stored as list)
 
 ### Additional Features
+
 - **images**: Product image URLs (list format)
 - **material**: Construction materials
 - **country_of_origin**: Manufacturing location
@@ -177,6 +194,7 @@ The project uses a comprehensive furniture dataset with **312 products**:
 - **uniq_id**: Unique product identifier
 
 ### Data Quality
+
 - **Completeness**: 95%+ data completeness across key fields
 - **Consistency**: Standardized price format and category structure
 - **Diversity**: 312 unique products across multiple categories
@@ -185,18 +203,21 @@ The project uses a comprehensive furniture dataset with **312 products**:
 ## 🎯 Model Performance
 
 ### NLP Model (sentence-transformers)
+
 - **Embedding Quality**: High semantic similarity for furniture products
 - **Processing Speed**: ~100 products/second
 - **Memory Usage**: ~90MB model size
 - **Accuracy**: Excellent for text-based similarity search
 
 ### CV Model (ResNet50)
+
 - **Feature Quality**: Robust visual feature extraction
 - **Processing Speed**: ~50 images/second (CPU)
 - **Memory Usage**: ~100MB model size
 - **Accuracy**: Good visual similarity for furniture images
 
 ### Combined System
+
 - **Search Latency**: <100ms for similarity search
 - **Recommendation Quality**: High relevance scores
 - **Scalability**: Handles 312 products efficiently
@@ -205,15 +226,18 @@ The project uses a comprehensive furniture dataset with **312 products**:
 ## 📚 API Endpoints
 
 ### Recommendations
+
 - `GET /api/v1/recommendations/search?query={query}&top_k={k}` - Search similar products
 - `GET /api/v1/recommendations/product/{id}` - Get product recommendations
 
 ### Products
+
 - `GET /api/v1/products/` - List all products
 - `GET /api/v1/products/{id}` - Get product details
 - `POST /api/v1/products/{id}/generate-description` - Generate AI description
 
 ### Analytics
+
 - `GET /api/v1/analytics/overview` - Get comprehensive analytics
 - `GET /api/v1/analytics/categories` - Category distribution
 - `GET /api/v1/analytics/brands` - Brand analytics
@@ -222,7 +246,9 @@ The project uses a comprehensive furniture dataset with **312 products**:
 ## 📖 Jupyter Notebooks
 
 ### 1. Data Analysis (`notebooks/data_analysis.ipynb`)
+
 Comprehensive exploratory data analysis including:
+
 - Data quality assessment
 - Price distribution analysis with visualizations
 - Category analysis and distribution
@@ -232,7 +258,9 @@ Comprehensive exploratory data analysis including:
 - Geographic and material analysis
 
 ### 2. Model Training (`notebooks/model_training.ipynb`)
+
 Complete ML model training and evaluation:
+
 - NLP model training (sentence-transformers)
 - Computer vision model training (ResNet50)
 - Multimodal recommendation system
@@ -243,18 +271,22 @@ Complete ML model training and evaluation:
 ## 🚀 Deployment
 
 ### Option 1: Vercel + Railway (Recommended)
+
 - **Frontend**: Deploy to [Vercel](https://vercel.com)
 - **Backend**: Deploy to [Railway](https://railway.app)
 
 ### Option 2: Render (Full Stack)
+
 - Deploy both frontend and backend to [Render](https://render.com)
 
 ### Option 3: Heroku
+
 - Deploy to [Heroku](https://heroku.com) with proper configuration
 
 ## 🧪 Testing
 
 Run the comprehensive test suite:
+
 ```bash
 # Backend tests
 cd backend
@@ -294,6 +326,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🆘 Support
 
 For questions or issues:
+
 - Open an issue on [GitHub](https://github.com/DEEPANKIT/Ikarus-3d-AI/issues)
 - Check the [documentation](http://localhost:8000/docs) for API details
 - Review the Jupyter notebooks for implementation details
