@@ -1,0 +1,320 @@
+# Ikarus 3D Product Recommendation/Analytics Web App - Implementation Plan
+
+## Project Overview
+Building a production-grade ML-driven Product Recommendation/Analytics Web App for Ikarus 3D with focus on scalability, clean code, and production best practices.
+
+## Assignment Requirements Summary
+- Duration: 2 days
+- Goal: Build complete ML-driven web application
+- Core Functionality: Recommend furniture products and generate creative descriptions using AI
+- Tech Stack: FastAPI backend, React frontend, Pinecone vector DB, ML/NLP/CV/GenAI models
+- Dataset: 312 furniture products with images, descriptions, prices, categories
+- Deliverables: Working end-to-end application with analytics dashboard
+
+## Project Structure
+```
+ikarus-3d-app/
+├── .cursorrules                    # Cursor-specific rules
+├── .gitignore
+├── README.md
+├── docker-compose.yml             # For development
+├── requirements.txt
+├── package.json
+├── backend/
+│   ├── __init__.py
+│   ├── main.py                     # FastAPI app
+│   ├── config.py                  # Configuration management
+│   ├── database/
+│   │   ├── __init__.py
+│   │   ├── connection.py
+│   │   └── models.py
+│   ├── services/
+│   │   ├── __init__.py
+│   │   ├── recommendation_service.py
+│   │   ├── analytics_service.py
+│   │   ├── embedding_service.py
+│   │   └── genai_service.py
+│   ├── routers/
+│   │   ├── __init__.py
+│   │   ├── recommendations.py
+│   │   ├── analytics.py
+│   │   └── products.py
+│   ├── models/
+│   │   ├── __init__.py
+│   │   ├── product.py
+│   │   ├── recommendation.py
+│   │   └── analytics.py
+│   ├── utils/
+│   │   ├── __init__.py
+│   │   ├── data_loader.py
+│   │   ├── model_loader.py
+│   │   └── validators.py
+│   └── tests/
+│       ├── __init__.py
+│       ├── test_recommendations.py
+│       └── test_analytics.py
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── services/
+│   │   ├── utils/
+│   │   └── types/
+│   ├── public/
+│   └── package.json
+├── data/
+│   ├── raw/
+│   └── processed/
+├── models/
+│   ├── trained/
+│   └── checkpoints/
+├── scripts/
+│   ├── data_analysis.py
+│   ├── model_training.py
+│   └── data_preprocessing.py
+└── notebooks/                     # Optional for exploration
+    ├── data_analysis.ipynb
+    └── model_training.ipynb
+```
+
+## Phase 1: Project Setup & Architecture (Day 1 - Morning)
+
+### Step 1: Project Structure & Configuration
+- Create directory structure
+- Set up virtual environment
+- Install dependencies with version pinning
+- Configure environment variables
+- Set up logging system
+- Initialize Git repository
+- Create .gitignore file
+
+### Step 2: Environment Setup
+- Python 3.8+ virtual environment
+- Node.js 16+ for frontend
+- Install core dependencies:
+  - Backend: FastAPI, uvicorn, pandas, numpy, scikit-learn, torch, transformers, spacy, pinecone-client, langchain
+  - Frontend: React, TypeScript, Material-UI, Axios, React Router
+- Set up environment variables for API keys
+- Configure logging with different levels
+- Set up testing framework (pytest, Jest)
+
+## Phase 2: Data Analysis & Preprocessing (Day 1 - Afternoon)
+
+### Step 3: Data Analysis Script (scripts/data_analysis.py)
+Production-Grade Features:
+- Modular Design: Separate functions for each analysis
+- Logging: Comprehensive logging for debugging
+- Error Handling: Robust error handling
+- Data Validation: Input validation and data quality checks
+- Performance: Efficient data processing
+- Documentation: Clear docstrings and comments
+
+Key Analysis Areas:
+- Product distribution by category (Home & Kitchen: ~70%, Patio: ~15%, etc.)
+- Price analysis and outliers ($5.98 - $260.80 range)
+- Brand market share analysis
+- Material composition analysis (Wood, Metal, Foam, Leather, Plastic)
+- Geographic distribution (China, USA, Vietnam, Malaysia, Morocco, Taiwan)
+- Text analysis (descriptions, titles, keywords)
+- Image analysis and quality assessment (5-7 images per product)
+
+### Step 4: Data Preprocessing Pipeline
+- Text Cleaning: Standardize descriptions, titles, remove special characters
+- Price Processing: Convert price strings to numeric, handle missing values
+- Category Processing: Parse nested category lists
+- Image Processing: Download, resize, validate images, create feature vectors
+- Feature Engineering: Create recommendation features
+- Data Validation: Ensure data quality and consistency
+
+## Phase 3: Model Development (Day 1 - Evening)
+
+### Step 5: Model Training Script (scripts/model_training.py)
+Production-Grade Features:
+- Modular Architecture: Separate classes for each model type
+- Configuration Management: YAML config files
+- Model Versioning: Save model versions and metadata
+- Performance Monitoring: Track training metrics
+- Error Handling: Robust error handling and recovery
+- Logging: Comprehensive training logs
+
+Models to Implement:
+
+1. Recommendation Engine:
+   - Collaborative filtering with user-item matrix
+   - Content-based filtering using TF-IDF
+   - Hybrid approach combining both methods
+   - Matrix factorization for recommendations
+   - Similarity-based recommendations
+
+2. NLP Models:
+   - Text preprocessing with spaCy
+   - TF-IDF vectorization of descriptions
+   - Cosine similarity for text-based recommendations
+   - Product grouping based on descriptions
+   - Brand similarity analysis
+   - Sentiment analysis of descriptions
+
+3. Computer Vision:
+   - ResNet-50 for furniture type classification
+   - Material recognition from images
+   - Color extraction and analysis
+   - Style classification (modern, traditional, industrial)
+   - Visual similarity calculation
+
+4. Generative AI:
+   - Fine-tune GPT-2 or similar lightweight model
+   - Generate creative product descriptions
+   - Style-consistent descriptions
+   - Feature highlighting
+   - Content enhancement
+
+### Step 6: Vector Database Integration
+- Pinecone Setup: Configure vector database
+- Embedding Generation: Create text and image embeddings
+- Index Management: Efficient indexing and retrieval
+- Semantic Search: Implement vector similarity search
+- Multi-modal Search: Combine text and image embeddings
+
+## Phase 4: Backend Development (Day 2 - Morning)
+
+### Step 7: FastAPI Backend Architecture
+Production-Grade Features:
+- Dependency Injection: Clean architecture
+- Error Handling: Comprehensive error handling
+- Validation: Pydantic models for validation
+- Logging: Structured logging
+- Monitoring: Health checks and metrics
+- Security: Input validation and sanitization
+
+API Endpoints:
+- Recommendations: /api/v1/recommendations/
+- Analytics: /api/v1/analytics/
+- Products: /api/v1/products/
+- Search: /api/v1/search/
+- Health: /api/v1/health/
+
+### Step 8: Service Layer Implementation
+- Recommendation Service: Core recommendation logic
+- Analytics Service: Data analysis and insights
+- Embedding Service: Vector operations
+- GenAI Service: AI content generation
+- Caching: Redis for performance
+- Rate Limiting: API rate limiting
+
+## Phase 5: Frontend Development (Day 2 - Afternoon)
+
+### Step 9: React Frontend Architecture
+Production-Grade Features:
+- TypeScript: Type safety
+- Component Architecture: Reusable components
+- State Management: Redux or Context API
+- Error Boundaries: Error handling
+- Loading States: User experience
+- Responsive Design: Mobile-first approach
+
+Pages:
+- Recommendation Page: Conversational interface with chat-like input
+- Analytics Dashboard: Data visualizations with charts and graphs
+- Product Search: Advanced search and filtering
+- Product Details: Individual product pages with AI-generated descriptions
+
+### Step 10: UI/UX Implementation
+- Design System: Consistent design language
+- Accessibility: WCAG compliance
+- Performance: Code splitting, lazy loading
+- Testing: Unit and integration tests
+- Documentation: Component documentation
+
+## Phase 6: Integration & Testing (Day 2 - Evening)
+
+### Step 11: End-to-End Integration
+- API Integration: Frontend-backend communication
+- Error Handling: Comprehensive error handling
+- Performance Testing: Load testing
+- Security Testing: Vulnerability assessment
+- User Testing: Usability testing
+
+### Step 12: Production Readiness
+- Docker: Containerization
+- CI/CD: Automated testing and deployment
+- Monitoring: Application monitoring
+- Documentation: API and user documentation
+- Deployment: Production deployment
+
+## Key Production-Grade Practices
+
+### 1. Code Quality
+- Type Safety: Use TypeScript and Python type hints
+- Error Handling: Comprehensive error handling
+- Logging: Structured logging with different levels
+- Testing: Unit, integration, and end-to-end tests
+- Documentation: Clear docstrings and comments
+
+### 2. Architecture
+- Modular Design: Separate concerns
+- Dependency Injection: Clean dependencies
+- Configuration Management: Environment-based configs
+- Caching: Redis for performance
+- Rate Limiting: API protection
+
+### 3. Performance
+- Database Optimization: Efficient queries
+- Caching Strategies: Multiple cache layers
+- Code Splitting: Frontend optimization
+- Lazy Loading: On-demand loading
+- Monitoring: Performance metrics
+
+### 4. Security
+- Input Validation: Sanitize all inputs
+- Authentication: Secure API access
+- HTTPS: Encrypted communication
+- Rate Limiting: Prevent abuse
+- Error Handling: Don't expose sensitive info
+
+### 5. Scalability
+- Microservices: Modular backend
+- Load Balancing: Distribute traffic
+- Database Scaling: Optimize queries
+- Caching: Reduce database load
+- Monitoring: Track performance
+
+## Dataset Analysis Summary
+- Total Records: 312 products
+- Columns: title, brand, description, price, categories, images, manufacturer, package_dimensions, country_of_origin, material, color, uniq_id
+- Product Types: Furniture, home decor, storage, office chairs, doormats, etc.
+- Price Range: $5.98 - $260.80
+- Categories: Home & Kitchen, Patio/Lawn & Garden, Tools & Home Improvement, Electronics, Baby Products
+- Materials: Wood, Metal, Foam, Leather, Plastic, etc.
+- Countries: China, USA, Vietnam, Malaysia, Morocco, Taiwan
+- Images: Multiple product images per item (5-7 images each)
+
+## Success Criteria
+- All components working together end-to-end
+- Creative GenAI output and analytics design
+- Well-commented code explaining the approach
+- Clear, modular, and well-reasoned code structure
+- Functional recommendation system with conversational interface
+- Comprehensive analytics dashboard
+- Production-grade code quality
+- Scalable architecture
+- Comprehensive testing
+- Complete documentation
+
+## Timeline Summary
+- Day 1: Data analysis, model training, backend development
+- Day 2: Frontend development, integration, testing, documentation
+
+## Deliverables Checklist
+✅ React Frontend - Complete with recommendation and analytics pages
+✅ FastAPI Backend - All endpoints working with ML models
+✅ Data Analytics Script - Comprehensive EDA with insights
+✅ Model Training Script - All models trained and evaluated
+✅ README Instructions - Complete setup and usage guide
+✅ End-to-End Integration - All components working together
+✅ Production-Grade Code - Clean, scalable, maintainable
+✅ Comprehensive Testing - Unit, integration, and end-to-end tests
+✅ Complete Documentation - API docs, user guides, architecture docs
+
+
+
+

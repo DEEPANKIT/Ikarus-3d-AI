@@ -1,0 +1,36 @@
+{
+  "name": "ikarus-3d-app",
+  "version": "1.0.0",
+  "description": "Ikarus 3D Product Recommendation/Analytics Web App - Monorepo",
+  "private": true,
+  "workspaces": [
+    "frontend"
+  ],
+  "scripts": {
+    "install:all": "npm install && cd frontend && npm install",
+    "start:backend": "cd backend && uvicorn main:app --reload --host 0.0.0.0 --port 8000",
+    "start:frontend": "cd frontend && npm start",
+    "build:frontend": "cd frontend && npm run build",
+    "test:backend": "cd backend && pytest",
+    "test:frontend": "cd frontend && npm test",
+    "dev": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
+    "setup": "npm run install:all"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "keywords": [
+    "machine-learning",
+    "recommendation-system",
+    "furniture",
+    "analytics",
+    "fastapi",
+    "react",
+    "typescript"
+  ],
+  "author": "Ikarus 3D Team",
+  "license": "MIT"
+}
+
+
+
