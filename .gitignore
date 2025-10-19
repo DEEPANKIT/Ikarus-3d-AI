@@ -63,8 +63,8 @@ models/
 *.pkl
 *.joblib
 
-# Data files (if too large)
-data/raw/*.csv
+# Data files (keep essential files, exclude large processed files)
+# data/raw/*.csv  # Commented out to include the dataset
 data/processed/*.json
 
 # Jupyter Notebook checkpoints
